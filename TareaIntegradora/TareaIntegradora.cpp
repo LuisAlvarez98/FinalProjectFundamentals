@@ -11,6 +11,7 @@
 using namespace std;
 
 char board[4][4];
+bool validator = true;
 
 void fillBoard() {
 	int counter, i , j;
@@ -40,10 +41,20 @@ void showBoard() {
 		cout << " "<<"\n";
 	}
 }
+void update() {
+	bool cont = true;
+	int numSelect;
+	char option;
+
+	while (cont == true) {
+		showBoard();
+		cont = false;
+	}
+}
 int main()
 {
 	fillBoard();
-	showBoard();
+	update();
     return 0;
 }
 

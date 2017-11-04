@@ -1,3 +1,5 @@
 ﻿  TareaIntegradora.cpp
+c:\users\luisf\source\repos\tareaintegradora\tareaintegradora\tareaintegradora.cpp(46): warning C4101: 'numSelect': unreferenced local variable
+c:\users\luisf\source\repos\tareaintegradora\tareaintegradora\tareaintegradora.cpp(47): warning C4101: 'option': unreferenced local variable
   TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.exe
   TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.pdb (Partial PDB)

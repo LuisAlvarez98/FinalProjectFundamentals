@@ -12,6 +12,8 @@ using namespace std;
 
 char board[4][4];
 bool validator = true;
+int xPos, yPos;
+
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -19,7 +21,8 @@ void position(int index) {
 		for (int j = 0; j < 4; j++) {
 			counter++;
 			if (counter == index) {
-				cout << " " << i << " " << j << "\n";
+				xPos = i;
+				yPos = j;
 			}
 			
 		}
@@ -31,9 +34,46 @@ void movement(char move) {
 	case 'w':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				board[0][0] = ' ';
-				board[1][0] = ' ';
-				board[0 + 2][0] = '*';
+				if (board[xPos - 1][yPos] == '*') {
+					board[xPos][yPos] = ' ';
+					board[xPos - 1][yPos] = ' ';
+					board[xPos - 2][yPos] = '*';
+				}
+			}
+		}
+		break;
+	case 'a':
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (board[xPos][yPos - 1] == '*') {
+					board[xPos][yPos] = ' ';
+					board[xPos][yPos - 1] = ' ';
+					board[xPos][yPos - 2] = '*';
+				}
+			}
+		}
+		break;
+	case 's':
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (board[xPos + 1][yPos] == '*') {
+					board[xPos][yPos] = ' ';
+					board[xPos + 1][yPos] = ' ';
+					board[xPos + 2][yPos] = '*';
+				}
+			}
+		}
+		break;
+	case 'd':
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (board[xPos][yPos + 1] == '*') {
+					board[xPos][yPos] = ' ';
+					board[xPos][yPos + 1] = ' ';
+					board[xPos][yPos + 2] = '*'; 
+				}else if (board[xPos][yPos + 2] == '*' && board[xPos][yPos + 1] == '*') {
+					break;
+				}
 			}
 		}
 		break;
@@ -86,7 +126,10 @@ int main()
 	fillBoard();
 	update();
 	cout << "---------------" << "\n";
-	position(2);
+	position(1);
+	movement('d');
+	showBoard();
+	
     return 0;
 }
 

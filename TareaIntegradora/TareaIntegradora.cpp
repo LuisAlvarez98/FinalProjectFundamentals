@@ -71,8 +71,6 @@ void movement(char move) {
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos + 1] = ' ';
 					board[xPos][yPos + 2] = '*'; 
-				}else if (board[xPos][yPos + 2] == '*' && board[xPos][yPos + 1] == '*') {
-					break;
 				}
 			}
 		}

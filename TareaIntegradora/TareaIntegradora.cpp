@@ -8,12 +8,18 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include<iomanip>
 using namespace std;
 
 char board[4][4];
 bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
+
+void validation() {
+	cin.clear();
+	cin.ignore(256, '\n');
+}
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -111,10 +117,10 @@ void showBoard() {
 	int counter = 1;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			cout << '[' <<board[i][j] << ']' <<  " ";
+			cout <<left << setw(2) <<counter << '[' <<board[i][j] << ']' << " " ;
 			counter++;
 		}
-		cout << " "<<"\n";
+		cout <<"\n";
 	}
 }
 //Main loop of the game
@@ -123,26 +129,39 @@ void update() {
 	int numSelect;
 	char option;
 	char move;
-	bool flag = true;
 	//Fills out the board
 	fillBoard();
 	showBoard();
 	//Main loop
 	while (cont == true) {
-		do {
+		while (true)
+		{
 			cout << "Casilla: ";
 			cin >> numSelect;
-			position(numSelect);
-			cin.clear();
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		} while (numSelect < 1 || numSelect > 16);
-		
-		cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
-		cin >> move;
-		movement(tolower(move));
+			if ((cin) && (numSelect >= 1) && (numSelect <= 16)) {
+				break;
+			}
+			validation();
+		}
+		position(numSelect);
+		while (true) {
+			cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
+			cin >> move;
+			if ((cin) && (tolower(move) == 'a' || tolower(move) == 'w' || tolower(move) == 's' || tolower(move) == 'd')) {
+				break;
+			}
+			validation();
+		}
+		movement(move);
 		showBoard();
-		cout << "Seguir (s/n)";
-		cin >> option;
+		while (true) {
+			cout << "Seguir (s/n)";
+			cin >> option;
+			if ((cin) && (tolower(option) == 's' || tolower(option) == 'n')) {
+				break;
+			}
+			validation();
+		}
 		if (tolower(option) == 'n') {
 			cont = false;
 		}else if (pieceCount == 1) {

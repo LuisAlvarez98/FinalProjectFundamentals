@@ -13,6 +13,20 @@ using namespace std;
 char board[4][4];
 bool validator = true;
 
+void movement(char move) {
+	switch (move) {
+	case 'w':
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				board[0][0] = ' ';
+				board[1][0] = ' ';
+				board[0 + 2][0] = '*';
+			}
+		}
+		break;
+	}
+}
+
 void fillBoard() {
 	int counter, i , j;
 	for (i = 0; i < 4; i++) {
@@ -55,6 +69,9 @@ int main()
 {
 	fillBoard();
 	update();
+	movement('w');
+	cout << "---------------" << "\n";
+	showBoard();
     return 0;
 }
 

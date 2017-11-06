@@ -24,17 +24,23 @@ void position(int index) {
 				xPos = i;
 				yPos = j;
 			}
-			
 		}
 	}
 }
 //Moves the piece
+/*
+Reglas
+si hay dos vacios arriba no puedes mover
+si hay uno vacio y el siguiente  esta lleno
+si hay dos llenos arriba no puedes mover
+SOLAMENTE SI ENFRENTE HAY UNO LLENO Y DESPUES DE ESE VACIO
+*/
 void movement(char move) {
 	switch (move) {
 	case 'w':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos - 1][yPos] == '*') {
+				if (board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ') {
 					board[xPos][yPos] = ' ';
 					board[xPos - 1][yPos] = ' ';
 					board[xPos - 2][yPos] = '*';

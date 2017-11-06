@@ -34,13 +34,6 @@ void position(int index) {
 	}
 }
 //Moves the piece
-/*
-Reglas
-si hay dos vacios arriba no puedes mover
-si hay uno vacio y el siguiente  esta lleno
-si hay dos llenos arriba no puedes mover
-SOLAMENTE SI ENFRENTE HAY UNO LLENO Y DESPUES DE ESE VACIO
-*/
 void movement(char move) {
 	switch (move) {
 	case 'w':
@@ -174,7 +167,5 @@ void update() {
 int main()
 {
 	update();	
-
-    return 0;
 }
 

@@ -123,26 +123,31 @@ void update() {
 	int numSelect;
 	char option;
 	char move;
+	bool flag = true;
 	//Fills out the board
 	fillBoard();
 	showBoard();
 	//Main loop
 	while (cont == true) {
-		cout << "Casilla: ";
-		cin >> numSelect;
-		position(numSelect);
+		do {
+			cout << "Casilla: ";
+			cin >> numSelect;
+			position(numSelect);
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		} while (numSelect < 1 || numSelect > 16);
+		
 		cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
 		cin >> move;
-		movement(move);
+		movement(tolower(move));
 		showBoard();
 		cout << "Seguir (s/n)";
 		cin >> option;
-		cout << "Numero de piezas: " << pieceCount <<  "\n";
 		if (tolower(option) == 'n') {
 			cont = false;
 		}else if (pieceCount == 1) {
 			cont = false;
-			cout << "Good game :) you won" << "\n"; 
+			cout << "Haz ganado :)" << "\n"; 
 		}
 	}
 }

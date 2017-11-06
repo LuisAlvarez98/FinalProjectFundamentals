@@ -114,22 +114,31 @@ void update() {
 	bool cont = true;
 	int numSelect;
 	char option;
-
+	char move;
+	//Fills out the board
+	fillBoard();
+	showBoard();
+	//Main loop
 	while (cont == true) {
+		cout << "Casilla: ";
+		cin >> numSelect;
+		position(numSelect);
+		cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
+		cin >> move;
+		movement(move);
 		showBoard();
-		cont = false;
+		cout << "Seguir (s/n)";
+		cin >> option;
+		if (tolower(option) == 'n') {
+			cont = false;
+		}
 	}
 }
 //Main function
 int main()
 {
-	fillBoard();
-	update();
-	cout << "---------------" << "\n";
-	position(1);
-	movement('d');
-	showBoard();
-	
+	update();	
+
     return 0;
 }
 

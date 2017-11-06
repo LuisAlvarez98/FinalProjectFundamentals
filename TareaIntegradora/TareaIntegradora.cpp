@@ -12,7 +12,18 @@ using namespace std;
 
 char board[4][4];
 bool validator = true;
-
+void position(int index) {
+	int counter = 0;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			counter++;
+			if (counter == index) {
+				cout << " " << i << " " << j << "\n";
+			}
+			
+		}
+	}
+}
 void movement(char move) {
 	switch (move) {
 	case 'w':
@@ -69,9 +80,8 @@ int main()
 {
 	fillBoard();
 	update();
-	movement('w');
 	cout << "---------------" << "\n";
-	showBoard();
+	position(16);
     return 0;
 }
 

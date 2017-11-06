@@ -12,6 +12,7 @@ using namespace std;
 
 char board[4][4];
 bool validator = true;
+//Obtains the position of the object
 void position(int index) {
 	int counter = 0;
 	for (int i = 0; i < 4; i++) {
@@ -24,6 +25,7 @@ void position(int index) {
 		}
 	}
 }
+//Moves the piece
 void movement(char move) {
 	switch (move) {
 	case 'w':
@@ -37,7 +39,7 @@ void movement(char move) {
 		break;
 	}
 }
-
+//Fill outs the board
 void fillBoard() {
 	int counter, i , j;
 	for (i = 0; i < 4; i++) {
@@ -56,6 +58,7 @@ void fillBoard() {
 	}
 
 }
+//Shows the game board
 void showBoard() {
 	int counter = 1;
 	for (int i = 0; i < 4; i++) {
@@ -66,6 +69,7 @@ void showBoard() {
 		cout << " "<<"\n";
 	}
 }
+//Main loop of the game
 void update() {
 	bool cont = true;
 	int numSelect;
@@ -76,12 +80,13 @@ void update() {
 		cont = false;
 	}
 }
+//Main function
 int main()
 {
 	fillBoard();
 	update();
 	cout << "---------------" << "\n";
-	position(16);
+	position(2);
     return 0;
 }
 

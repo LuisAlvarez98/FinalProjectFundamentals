@@ -13,7 +13,7 @@ using namespace std;
 char board[4][4];
 bool validator = true;
 int xPos, yPos;
-
+int pieceCount = 13;
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -44,6 +44,7 @@ void movement(char move) {
 					board[xPos][yPos] = ' ';
 					board[xPos - 1][yPos] = ' ';
 					board[xPos - 2][yPos] = '*';
+					pieceCount--;
 				}
 			}
 		}
@@ -51,10 +52,11 @@ void movement(char move) {
 	case 'a':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos - 1] == '*') {
+				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' ') {
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos - 1] = ' ';
 					board[xPos][yPos - 2] = '*';
+					pieceCount--;
 				}
 			}
 		}
@@ -62,10 +64,11 @@ void movement(char move) {
 	case 's':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos + 1][yPos] == '*') {
+				if (board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' ') {
 					board[xPos][yPos] = ' ';
 					board[xPos + 1][yPos] = ' ';
 					board[xPos + 2][yPos] = '*';
+					pieceCount--;
 				}
 			}
 		}
@@ -73,10 +76,11 @@ void movement(char move) {
 	case 'd':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos + 1] == '*') {
+				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' ') {
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos + 1] = ' ';
 					board[xPos][yPos + 2] = '*'; 
+					pieceCount--;
 				}
 			}
 		}
@@ -133,8 +137,12 @@ void update() {
 		showBoard();
 		cout << "Seguir (s/n)";
 		cin >> option;
+		cout << "Numero de piezas: " << pieceCount <<  "\n";
 		if (tolower(option) == 'n') {
 			cont = false;
+		}else if (pieceCount == 1) {
+			cont = false;
+			cout << "Good game :) you won" << "\n"; 
 		}
 	}
 }

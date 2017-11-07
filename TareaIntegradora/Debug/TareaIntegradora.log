@@ -1,3 +1,5 @@
 ﻿  TareaIntegradora.cpp
+c:\users\luisf\source\repos\tareaintegradora\tareaintegradora\tareaintegradora.cpp(39): warning C4804: '>': unsafe use of type 'bool' in operation
+c:\users\luisf\source\repos\tareaintegradora\tareaintegradora\tareaintegradora.cpp(51): warning C4804: '>': unsafe use of type 'bool' in operation
   TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.exe
   TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.pdb (Partial PDB)

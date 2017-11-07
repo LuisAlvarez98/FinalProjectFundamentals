@@ -16,10 +16,6 @@ bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
 
-void validation() {
-	cin.clear();
-	cin.ignore(256, '\n');
-}
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -34,6 +30,13 @@ void position(int index) {
 	}
 }
 //Moves the piece
+/*
+Reglas
+si hay dos vacios arriba no puedes mover
+si hay uno vacio y el siguiente  esta lleno
+si hay dos llenos arriba no puedes mover
+SOLAMENTE SI ENFRENTE HAY UNO LLENO Y DESPUES DE ESE VACIO
+*/
 void movement(char move) {
 	switch (move) {
 	case 'w':
@@ -127,34 +130,21 @@ void update() {
 	showBoard();
 	//Main loop
 	while (cont == true) {
-		while (true)
-		{
-			cout << "Casilla: ";
-			cin >> numSelect;
-			if ((cin) && (numSelect >= 1) && (numSelect <= 16)) {
-				break;
-			}
-			validation();
-		}
+	
+		cout << "Casilla: ";
+		cin >> numSelect;
 		position(numSelect);
-		while (true) {
-			cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
-			cin >> move;
-			if ((cin) && (tolower(move) == 'a' || tolower(move) == 'w' || tolower(move) == 's' || tolower(move) == 'd')) {
-				break;
-			}
-			validation();
-		}
+
+		cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
+		//(tolower(move) == 'a' || tolower(move) == 'w' || tolower(move) == 's' || tolower(move) == 'd')
+		cin >> move;
+			
 		movement(move);
 		showBoard();
-		while (true) {
-			cout << "Seguir (s/n)";
-			cin >> option;
-			if ((cin) && (tolower(option) == 's' || tolower(option) == 'n')) {
-				break;
-			}
-			validation();
-		}
+		
+		cout << "Seguir (s/n)";
+		cin >> option;
+			
 		if (tolower(option) == 'n') {
 			cont = false;
 		}else if (pieceCount == 1) {
@@ -167,5 +157,7 @@ void update() {
 int main()
 {
 	update();	
+
+    return 0;
 }
 

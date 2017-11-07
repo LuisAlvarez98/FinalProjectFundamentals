@@ -31,13 +31,6 @@ void position(int index) {
 	}
 }
 //Moves the piece
-/*
-Reglas
-si hay dos vacios arriba no puedes mover
-si hay uno vacio y el siguiente  esta lleno
-si hay dos llenos arriba no puedes mover
-SOLAMENTE SI ENFRENTE HAY UNO LLENO Y DESPUES DE ESE VACIO
-*/
 void movement(char move) {
 	switch (move) {
 	case 'w':
@@ -107,7 +100,6 @@ void fillBoard() {
 			counter++;
 		}
 	}
-
 }
 //Shows the game board
 void showBoard() {
@@ -135,29 +127,24 @@ void update() {
 		do {
 			cout << "Casilla: " << "\n";
 			cin >> numSelect;
-		} while (!(numSelect >= 1 && numSelect <= 16));
 			position(numSelect);
-
+		} while (!(numSelect >= 1 && numSelect <= 16));
+			
 			//pide movimiento
 			while (true) {
 				cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
-
 				cin >> move;
-
+				movement(tolower(move));
 				if (cin.fail()) { 
-
 					cin.clear(); 
 					cin.ignore(1000, '\n'); 
 					continue;
 				}
-
-				if (!(move == 'w' || move == 'a' || move == 's' || move == 'd'))
+				if (!(tolower(move) == 'w' || tolower(move) == 'a' || tolower(move) == 's' || tolower(move) == 'd'))
 					continue;
 
 				break;
 			}
-			movement(move);
-			
 			showBoard();
 			while (true) {
 				cout << "Seguir (s/n)";
@@ -167,7 +154,7 @@ void update() {
 					cin.ignore(1000, '\n'); 
 					continue;
 				}
-				if (!(option == 's' || option == 'n')) 
+				if (!(tolower(option) == 's' || tolower(option) == 'n')) 
 					continue;
 				break;
 			}

@@ -15,6 +15,7 @@ char board[4][4];
 bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
+char option;
 
 //Obtains the position of the object
 void position(int index) {
@@ -123,36 +124,64 @@ void showBoard() {
 void update() {
 	bool cont = true;
 	int numSelect;
-	char option;
 	char move;
+	
 	//Fills out the board
 	fillBoard();
 	showBoard();
 	//Main loop
 	while (cont == true) {
-	
-		cout << "Casilla: ";
-		cin >> numSelect;
-		position(numSelect);
+			//pide casilla
+		do {
+			cout << "Casilla: " << "\n";
+			cin >> numSelect;
+		} while (!(numSelect >= 1 && numSelect <= 16));
+			position(numSelect);
 
-		cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
-		//(tolower(move) == 'a' || tolower(move) == 'w' || tolower(move) == 's' || tolower(move) == 'd')
-		cin >> move;
+			//pide movimiento
+			while (true) {
+				cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
+
+				cin >> move;
+
+				if (cin.fail()) { 
+
+					cin.clear(); 
+					cin.ignore(1000, '\n'); 
+					continue;
+				}
+
+				if (!(move == 'w' || move == 'a' || move == 's' || move == 'd'))
+					continue;
+
+				break;
+			}
+			movement(move);
 			
-		movement(move);
-		showBoard();
-		
-		cout << "Seguir (s/n)";
-		cin >> option;
+			showBoard();
+			while (true) {
+				cout << "Seguir (s/n)";
+				cin >> option;
+				if (cin.fail()) {
+					cin.clear(); 
+					cin.ignore(1000, '\n'); 
+					continue;
+				}
+				if (!(option == 's' || option == 'n')) 
+					continue;
+				break;
+			}
 			
-		if (tolower(option) == 'n') {
-			cont = false;
-		}else if (pieceCount == 1) {
-			cont = false;
-			cout << "Haz ganado :)" << "\n"; 
-		}
+			if (tolower(option) == 'n') {
+				cont = false;
+			}
+			else if (pieceCount == 1) {
+				cont = false;
+				cout << "Haz ganado :)" << "\n";
+			}
 	}
 }
+
 //Main function
 int main()
 {

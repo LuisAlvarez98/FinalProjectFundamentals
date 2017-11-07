@@ -2,6 +2,7 @@
 	Tarea Integradora
 	11/4/2017
 	Por Luis Felipe Alvarez Sanchez A01194173
+	ver limitess
 
 */
 #include "stdafx.h"
@@ -36,7 +37,7 @@ void movement(char move) {
 	case 'w':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ' && (!xPos > 0)) {
+				if (board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
 					board[xPos][yPos] = ' ';
 					board[xPos - 1][yPos] = ' ';
 					board[xPos - 2][yPos] = '*';
@@ -48,7 +49,7 @@ void movement(char move) {
 	case 'a':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' ' && (!yPos > 5 )) {
+				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos - 1] = ' ';
 					board[xPos][yPos - 2] = '*';
@@ -60,7 +61,7 @@ void movement(char move) {
 	case 's':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' ') {
+				if (board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
 					board[xPos][yPos] = ' ';
 					board[xPos + 1][yPos] = ' ';
 					board[xPos + 2][yPos] = '*';
@@ -72,7 +73,7 @@ void movement(char move) {
 	case 'd':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' ') {
+				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos + 1] = ' ';
 					board[xPos][yPos + 2] = '*'; 

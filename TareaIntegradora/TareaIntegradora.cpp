@@ -21,12 +21,15 @@ char option;
 int currentPos;
 bool goodgame;
 
+//Cheks if good game
 void isGoodGame() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (board[i][j] == '*') {
 				if (board[i - 1][j] == ' ' && board[i][j - 1] == ' ' && board[i + 1][j] == ' ' && board[i][j + 1]) {
-					//if all pieces are like this is gg
+					goodgame = true;
+				}else {
+					goodgame = false;
 				}
 			}
 		}
@@ -89,7 +92,7 @@ void movement(char move) {
 			for (int j = 0; j < 4; j++) {
 				currentPos = yPos;
 				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' '){
-					if (yPos + 2 >= 3) {
+					if (yPos + 2 > 3) {
 						break;
 					}else{
 						board[xPos][yPos] = ' ';
@@ -185,6 +188,9 @@ void update() {
 			else if (pieceCount == 1) {
 				cont = false;
 				cout << "Haz ganado :)" << "\n";
+			}else if (goodgame == true) {
+				cont = false;
+				cout << "Haz perdido :(" << "\n";
 			}
 	}
 }

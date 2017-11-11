@@ -16,8 +16,22 @@ char board[4][4];
 bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
+int pieceLostCount = 0;
 char option;
+int currentPos;
+bool goodgame;
 
+void isGoodGame() {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			if (board[i][j] == '*') {
+				if (board[i - 1][j] == ' ' && board[i][j - 1] == ' ' && board[i + 1][j] == ' ' && board[i][j + 1]) {
+					//if all pieces are like this is gg
+				}
+			}
+		}
+	}
+}
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -37,7 +51,7 @@ void movement(char move) {
 	case 'w':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
+				if (board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ' ){
 					board[xPos][yPos] = ' ';
 					board[xPos - 1][yPos] = ' ';
 					board[xPos - 2][yPos] = '*';
@@ -49,7 +63,7 @@ void movement(char move) {
 	case 'a':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
+				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' '){
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos - 1] = ' ';
 					board[xPos][yPos - 2] = '*';
@@ -61,7 +75,7 @@ void movement(char move) {
 	case 's':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
+				if (board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' ') {
 					board[xPos][yPos] = ' ';
 					board[xPos + 1][yPos] = ' ';
 					board[xPos + 2][yPos] = '*';
@@ -73,7 +87,7 @@ void movement(char move) {
 	case 'd':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' ' && (board[xPos][yPos] > 5 || board[xPos][yPos] < 0)) {
+				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' '){
 					board[xPos][yPos] = ' ';
 					board[xPos][yPos + 1] = ' ';
 					board[xPos][yPos + 2] = '*'; 
@@ -118,7 +132,6 @@ void update() {
 	bool cont = true;
 	int numSelect;
 	char move;
-	
 	//Fills out the board
 	fillBoard();
 	showBoard();
@@ -130,7 +143,6 @@ void update() {
 			cin >> numSelect;
 			position(numSelect);
 		} while (!(numSelect >= 1 && numSelect <= 16));
-			
 			//pide movimiento
 			while (true) {
 				cout << "(a - izq; s - aba; w - arr; d - der)" << "\n";
@@ -147,6 +159,7 @@ void update() {
 				break;
 			}
 			showBoard();
+			isGoodGame();
 			while (true) {
 				cout << "Seguir (s/n)";
 				cin >> option;
@@ -169,12 +182,10 @@ void update() {
 			}
 	}
 }
-
 //Main function
 int main()
 {
 	update();	
-
     return 0;
 }
 

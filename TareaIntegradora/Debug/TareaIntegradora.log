@@ -1,3 +1,2 @@
 ﻿  TareaIntegradora.cpp
-  TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.exe
-  TareaIntegradora.vcxproj -> C:\Users\luisf\source\repos\TareaIntegradora\Debug\TareaIntegradora.pdb (Partial PDB)
+c:\users\luisf\source\repos\tareaintegradora\tareaintegradora\tareaintegradora.cpp(8): error C2859: C:\Users\luisf\source\repos\TareaIntegradora\TareaIntegradora\Debug\vc141.idb is not the idb file that was used when this precompiled header was created, recreate the precompiled header.

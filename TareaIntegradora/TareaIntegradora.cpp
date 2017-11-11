@@ -16,9 +16,7 @@ char board[4][4];
 bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
-int pieceLostCount = 0;
 char option;
-int currentPos;
 bool goodgame;
 
 //Cheks if good game
@@ -26,12 +24,7 @@ void isGoodGame() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (board[i][j] == '*') {
-				if ((board[i + 1][j] == ' ' && board[i - 1][j] == ' ' && board[i][j + 1] == ' ' &&  board[i][j - 1] == ' ')
-					&& !(board[i + 1][j] == '*' || board[i - 1][j] == '*' || board[i][j + 1] == '*' || board[i][j - 1] == '*')) {
-					goodgame = true;
-				}else {
-					goodgame = false;
-				}
+				cout << pieceCount;
 			}
 		}
 	}
@@ -96,7 +89,6 @@ void movement(char move) {
 	case 'd':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				currentPos = yPos;
 				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' '){
 					if (yPos + 2 > 3) {
 						break;

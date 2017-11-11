@@ -26,8 +26,8 @@ void isGoodGame() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (board[i][j] == '*') {
-				if ((board[xPos - 1][yPos] == '*' && board[xPos - 2][yPos] == ' ' && board[xPos + 1][yPos] == '*' && board[xPos + 2][yPos] == ' '
-					&& board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' ' && board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' ')){
+				if ((board[i + 1][j] == ' ' && board[i - 1][j] == ' ' && board[i][j + 1] == ' ' &&  board[i][j - 1] == ' ')
+					&& !(board[i + 1][j] == '*' || board[i - 1][j] == '*' || board[i][j + 1] == '*' || board[i][j - 1] == '*')) {
 					goodgame = true;
 				}else {
 					goodgame = false;
@@ -68,10 +68,15 @@ void movement(char move) {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (board[xPos][yPos - 1] == '*' && board[xPos][yPos - 2] == ' '){
-					board[xPos][yPos] = ' ';
-					board[xPos][yPos - 1] = ' ';
-					board[xPos][yPos - 2] = '*';
-					pieceCount--;
+					if ((yPos - 2) < 0) {
+						break;
+					}else {
+						board[xPos][yPos] = ' ';
+						board[xPos][yPos - 1] = ' ';
+						board[xPos][yPos - 2] = '*';
+						pieceCount--;
+					}
+						
 				}
 			}
 		}

@@ -87,11 +87,17 @@ void movement(char move) {
 	case 'd':
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
+				currentPos = yPos;
 				if (board[xPos][yPos + 1] == '*' && board[xPos][yPos + 2] == ' '){
-					board[xPos][yPos] = ' ';
-					board[xPos][yPos + 1] = ' ';
-					board[xPos][yPos + 2] = '*'; 
-					pieceCount--;
+					if (yPos + 2 >= 3) {
+						break;
+					}else{
+						board[xPos][yPos] = ' ';
+						board[xPos][yPos + 1] = ' ';
+						board[xPos][yPos + 2] = '*';
+						pieceCount--;
+					}
+				
 				}
 			}
 		}

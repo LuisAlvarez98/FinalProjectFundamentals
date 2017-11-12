@@ -21,10 +21,14 @@ bool goodgame;
 
 //Cheks if good game
 void isGoodGame() {
+	int c = 0;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (board[i][j] == '*') {
-				cout << pieceCount;
+				c++;
+				if (c == pieceCount) {
+					goodgame = true;
+				 }
 			}
 		}
 	}

@@ -17,22 +17,8 @@ bool validator = true;
 int xPos, yPos;
 int pieceCount = 13;
 char option;
-bool goodgame;
 
-//Cheks if good game
-void isGoodGame() {
-	int c = 0;
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			if (board[i][j] == '*') {
-				c++;
-				if (c == pieceCount) {
-					goodgame = true;
-				 }
-			}
-		}
-	}
-}
+
 //Obtains the position of the object
 void position(int index) {
 	int counter = 0;
@@ -170,7 +156,6 @@ void update() {
 				break;
 			}
 			showBoard();
-			isGoodGame();
 			while (true) {
 				cout << "Seguir (s/n)";
 				cin >> option;
@@ -190,9 +175,6 @@ void update() {
 			else if (pieceCount == 1) {
 				cont = false;
 				cout << "Haz ganado :)" << "\n";
-			}else if (goodgame == true) {
-				cont = false;
-				cout << "Haz perdido :(" << "\n";
 			}
 	}
 }
